@@ -23,7 +23,8 @@ const NB_HIGHSCORES: usize = 5;
 enum TextureColor {
     Green,
     Blue,
-    Red,
+    #[allow(dead_code)]
+    Red, // not actually dead
     Black,
 }
 
@@ -550,7 +551,7 @@ fn create_texture_from_text<'a>(texture_creator: &'a
        canvas: &mut Canvas<Window>,
        texture_creator: &'a TextureCreator<WindowContext>,
        font: &sdl2::ttf::Font,
-       start_x_point: i32) {
+       _start_x_point: i32) {
      let score_text = format!("Score: {}", tetris.score);
      let lines_sent_text = format!("Lines sent: {}", tetris.nb_lines);
      let level_text = format!("Level: {}", tetris.current_level);
@@ -686,10 +687,10 @@ fn main() {
           print_game_information(&tetris);
             break
         }
-        
+
         let ttf_context = sdl2::ttf::init().expect("SDL TTF initialization
         failed");
-        let mut font = ttf_context.load_font("assets/lucon.ttf", 128).expect("Couldn't load the font");
+        let font = ttf_context.load_font("assets/lucon.ttf", 128).expect("Couldn't load the font");
 
        
 
